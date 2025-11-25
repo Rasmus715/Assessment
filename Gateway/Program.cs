@@ -20,13 +20,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddSingleton<IInfluxDBClient, InfluxDBClient>(sp =>
+builder.Services.AddTransient<IInfluxDBClient, InfluxDBClient>(sp =>
 {
     var url = builder.Configuration["Influx:Url"] ?? "http://localhost:8086";
     return new InfluxDBClient(url, "admin", "admin123");
 });
 
-builder.Services.AddSingleton<IInfluxDbService, InfluxDbService>();
+builder.Services.AddTransient<IInfluxDbService, InfluxDbService>();
 
 builder.Services.AddLogging(loggingBuilder =>
 {
