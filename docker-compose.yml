@@ -1,19 +1,8 @@
-services:
-  weakapp:
-    image: fra.vultrcr.com/arreisregistry/weakapp:latest
-    container_name: weakapp
-    ports:
-      - "8080:8080"
-    environment:
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_PORT: 5672
-      RABBITMQ_USER: guest
-      RABBITMQ_PASS: guest
-      WEAKAPP__BASEURL: http://localhost:8080
-    depends_on:
-      - rabbitmq
-    restart: always
+networks:
+  app-network:
+    driver: bridge
 
+services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
@@ -24,3 +13,147 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
     restart: always
+    networks:
+      - app-network
+
+  weakapp:
+    image: fra.vultrcr.com/arreisregistry/weakapp:latest
+    container_name: weakapp
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - app-network
+
+  ingestor:
+    image: fra.vultrcr.com/arreisregistry/ivan/ingestor:latest
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASS: guest
+      WEAKAPP_BASE_URL: "http://weakapp:8080"
+    depends_on:
+      - rabbitmq
+      - weakapp
+    networks:
+      - app-network
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: admin123
+      DOCKER_INFLUXDB_INIT_ORG: rasmus
+      DOCKER_INFLUXDB_INIT_BUCKET: weakapp_data
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: supersecret-token
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    restart: always
+    networks:
+      - app-network
+
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINUSERNAME=admin
+      - SEQ_FIRSTRUN_ADMINPASSWORDHASH=QG+oFpLwetnVrzFQ+AuAwMFgFHKoksi0aONSZTfsf8GwoJ7bOCIoqKC7lse8jK+5ZCLx4iEL3TtMQuTN7EvprFckWTw0nMi9FLRRNSMksxAv
+    restart: unless-stopped
+    volumes:
+      - ./seq-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - app-network
+
+  seqcli:
+    image: datalust/seqcli:latest
+    command: apikey create -t newapikey --token SeqTokenForApps12345 -s http://seq --permissions="read,write,project,organization,system" --connect-username admin --connect-password admin1234
+    depends_on:
+      - seq
+    restart: on-failure
+    networks:
+      - app-network
+
+  processor:
+    image: fra.vultrcr.com/arreisregistry/ivan/processor:latest
+    container_name: processor
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_QUEUE: ingestor.queue
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASS: guest
+      WEAKAPP_BASE_URL: "http://weakapp:8080"
+      INFLUXDB_URL: http://influxdb:8086
+      INFLUXDB_TOKEN: supersecret-token
+      INFLUXDB_ORG: rasmus
+      INFLUXDB_BUCKET: weakapp_data
+      SEQ_SERVER_URL: http://seq:5341
+    depends_on:
+      - rabbitmq
+      - influxdb
+      - seq
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  notifier:
+    image: fra.vultrcr.com/arreisregistry/ivan/notifier:latest
+    container_name: notifier
+    environment:
+      SIGNALR_URL: http://gateway:8080/assessment
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    depends_on:
+      - rabbitmq
+      - influxdb
+      - seq
+      - weakapp
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  gateway:
+    image: fra.vultrcr.com/arreisregistry/ivan/gateway:latest
+    container_name: gateway
+    environment:
+      INFLUX__URL: http://influxdb:8086
+      INFLUX__TOKEN: supersecret-token
+      INFLUX__ORG: rasmus
+      INFLUX__BUCKET: weakapp_data
+      SEQ_SERVER_URL: http://seq:5341
+    ports:
+      - "8081:8081"
+      - "8082:8080"
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    image: fra.vultrcr.com/arreisregistry/ivan/frontend:latest
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - gateway
+    restart: unless-stopped
+    networks:
+      - app-network
+    environment:
+      NEXT_PUBLIC_GATEWAY_HTTP_URL: http://gateway:8082
+      NEXT_PUBLIC_GATEWAY_HTTPS_URL: http://gateway:8082
+      NEXT_PUBLIC_SIGNALR_URL: http://gateway:8082/assessment
+      NEXT_PUBLIC_GRAPHQL_URL: http://gateway:8082/graphql
+      NEXT_PUBLIC_REST_API_URL: http://gateway:8082
+
+volumes:
+  influxdb_data:
