@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d211bf4-14bd-4adc-95b2-fe39fb1d7767" name="Changes" comment="Introduce Assessment.Ingestor service &amp; RabbitMq instance &amp; Queue">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/src/main/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assesment.Ingestor/src/main/kotlin/RabbitMqService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Assessment.Ingestor" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Rasmus715&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Rasmus715/Assessment.git&quot;,
+    &quot;accountId&quot;: &quot;990a699d-6799-4115-88d3-a7d507603793&quot;
+  }
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\crack\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14" javaHome="C:\Users\crack\.jdks\corretto-24.0.2" gradleVersion="8.14" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="359vB2dcbGe3boE26QxQrlBQ3Hl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile runtime.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Assesment.Ingestor [:org.rasmus.MainKt.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Assessment.Ingestor [:org.rasmus.MainKt.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.Build Assesment.Ingestor.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Assessment.Ingestor.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;features/assessment-ingestor&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Projects/Assessment/Assessment.Ingestor&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Kotlin.Ingestor">
+    <configuration name="Ingestor" type="JetRunConfigurationType" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.rasmus.MainKt" />
+      <module name="Assessment.Ingestor.main" />
+      <shortenClasspath name="NONE" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dockerfile runtime" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="eclipse-temurin24-jdk-jammy_runtime" />
+          <option name="buildCliOptions" value="--target runtime" />
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.Dockerfile runtime" />
+      <item itemvalue="Kotlin.Ingestor" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile runtime" />
+        <item itemvalue="Kotlin.Ingestor" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d211bf4-14bd-4adc-95b2-fe39fb1d7767" name="Changes" comment="" />
+      <created>1762534963364</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762534963364</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Introduce Assessment.Ingestor service &amp; RabbitMq instance &amp; Queue">
+      <option name="closed" value="true" />
+      <created>1762587827910</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762587827910</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Introduce Assessment.Ingestor service &amp; RabbitMq instance &amp; Queue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce Assessment.Ingestor service &amp; RabbitMq instance &amp; Queue" />
+  </component>
+</project>
