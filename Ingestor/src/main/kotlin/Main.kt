@@ -62,7 +62,7 @@ fun main() {
         } catch (e: Exception) {
             println("Failed to send WeakApp request: ${e.message}")
             Thread.sleep(sleepDuration)
-            return
+            continue;
         }
 
 
