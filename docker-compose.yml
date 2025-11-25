@@ -26,7 +26,7 @@ services:
       - app-network
 
   ingestor:
-    image: ingestor
+    image: fra.vultrcr.com/arreisregistry/ivan/ingestor:latest
     environment:
       RABBITMQ_HOST: rabbitmq
       RABBITMQ_PORT: 5672
@@ -83,22 +83,19 @@ services:
       - app-network
 
   processor:
-    image: processor
+    image: fra.vultrcr.com/arreisregistry/ivan/processor:latest
     container_name: processor
     environment:
       RABBITMQ_HOST: rabbitmq
       RABBITMQ_QUEUE: ingestor.queue
-      RABBITMQ_PORT: 5672 
+      RABBITMQ_PORT: 5672
       RABBITMQ_USER: guest
       RABBITMQ_PASS: guest
-
       WEAKAPP_BASE_URL: "http://weakapp:8080"
-
       INFLUXDB_URL: http://influxdb:8086
       INFLUXDB_TOKEN: supersecret-token
       INFLUXDB_ORG: rasmus
       INFLUXDB_BUCKET: weakapp_data
-
       SEQ_SERVER_URL: http://seq:5341
     depends_on:
       - rabbitmq
@@ -107,6 +104,56 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+
+  notifier:
+    image: fra.vultrcr.com/arreisregistry/ivan/notifier:latest
+    container_name: notifier
+    environment:
+      SIGNALR_URL: http://gateway:8080/assessment
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    depends_on:
+      - rabbitmq
+      - influxdb
+      - seq
+      - weakapp
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  gateway:
+    image: fra.vultrcr.com/arreisregistry/ivan/gateway:latest
+    container_name: gateway
+    environment:
+      INFLUX__URL: http://influxdb:8086
+      INFLUX__TOKEN: supersecret-token
+      INFLUX__ORG: rasmus
+      INFLUX__BUCKET: weakapp_data
+      SEQ_SERVER_URL: http://seq:5341
+    ports:
+      - "8081:8081"
+      - "8082:8080"
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    image: fra.vultrcr.com/arreisregistry/ivan/frontend:latest
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - gateway
+    restart: unless-stopped
+    networks:
+      - app-network
+    environment:
+      NEXT_PUBLIC_GATEWAY_HTTP_URL: http://gateway:8082
+      NEXT_PUBLIC_GATEWAY_HTTPS_URL: http://gateway:8082
+      NEXT_PUBLIC_SIGNALR_URL: http://gateway:8082/assessment
+      NEXT_PUBLIC_GRAPHQL_URL: http://gateway:8082/graphql
+      NEXT_PUBLIC_REST_API_URL: http://gateway:8082
 
 volumes:
   influxdb_data:
