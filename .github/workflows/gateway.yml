@@ -86,11 +86,11 @@ jobs:
       #       **/coverage.cobertura.xml
       #     retention-days: 7
 
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: '**/test-results-unit.trx'
+      # - name: Publish test results
+      #   uses: EnricoMi/publish-unit-test-result-action@v2
+      #   if: always()
+      #   with:
+      #     files: '**/test-results-unit.trx'
 
   test-integration:
     name: Integration Tests
@@ -131,9 +131,9 @@ jobs:
       #       **/coverage.cobertura.xml
       #     retention-days: 7
 
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: '**/test-results-integration.trx'
+      # - name: Publish test results
+      #   uses: EnricoMi/publish-unit-test-result-action@v2
+      #   if: always()
+      #   with:
+      #     files: '**/test-results-integration.trx'
 
