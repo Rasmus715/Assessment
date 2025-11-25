@@ -1,0 +1,16 @@
+{
+  "name": "notifier",
+  "version": "1.0.0",
+  "main": "notifier.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@microsoft/signalr": "^10.0.0",
+    "amqplib": "^0.10.9",
+    "dotenv": "^17.2.3"
+  }
+}
