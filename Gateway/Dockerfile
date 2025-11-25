@@ -11,22 +11,22 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copy csproj and restore dependencies
-COPY Assessment.Gateway.csproj ./
-RUN dotnet restore "Assessment.Gateway.csproj"
+COPY Gateway.csproj ./
+RUN dotnet restore "Gateway.csproj"
 
 # Copy the rest of the project
 COPY . ./
 
 # Build the project
-RUN dotnet build "Assessment.Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Publish
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Assessment.Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Final image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Assessment.Gateway.dll"]
+ENTRYPOINT ["dotnet", "Gateway.dll"]

@@ -9,12 +9,12 @@ public class GetAirQualitySummaryGraphQLQuery
     public async Task<IEnumerable<GetAirQualitySummaryResponseModel>> GetAirQualitySummaryAsync(
         [Service] IMediator mediator,
         DateTime? timestamp,
-        bool useLatestValue)
+        bool? useLatestValue)
     {
         var query = new GetAirQualitySummaryQuery()
         {
             Timestamp = timestamp,
-            UseLatestValue = useLatestValue,
+            UseLatestValue = useLatestValue ?? false,
         };
 
         return await mediator.Send(query);
