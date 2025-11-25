@@ -45,7 +45,7 @@ bin/
 .DS_Store
 
 # Ignore seq-data files
-# /seq-data
+seq-data/
 
 # Ignore binary files
 *.bin
