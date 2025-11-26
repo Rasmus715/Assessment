@@ -4,7 +4,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetLatestMetrics;
 
-public record GetLatestMetricsQueryHandler(IInfluxDbService influxDbService)
+public class GetLatestMetricsQueryHandler(IInfluxDbService influxDbService)
     : IRequestHandler<GetLatestMetricsQuery, List<GetLatestMetricsResponseModel>>
 {
     public async ValueTask<List<GetLatestMetricsResponseModel>> Handle(

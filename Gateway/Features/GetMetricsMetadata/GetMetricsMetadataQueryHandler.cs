@@ -3,7 +3,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetMetricsMetadata;
 
-public record GetMetricsMetadataQueryHandler(IInfluxDbService influx)
+public class GetMetricsMetadataQueryHandler(IInfluxDbService influx)
     : IQueryHandler<GetMetricsMetadataQuery, GetMetricsMetadataResponse>
 {
     public async ValueTask<GetMetricsMetadataResponse> Handle(
