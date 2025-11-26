@@ -34,6 +34,12 @@ fun getLogger(): LoggerConfiguration {
 
 @OptIn(ExperimentalStdlibApi::class)
 fun main() {
+    Thread.setDefaultUncaughtExceptionHandler { _, e ->
+        Log.fatal(e, "Uncaught exception")
+        Log.closeAndFlush()
+        kotlin.system.exitProcess(1)
+    }
+
     Log.setLogger(getLogger().createLogger())
 
     Log.information("Hello from {lang}!", "Java")

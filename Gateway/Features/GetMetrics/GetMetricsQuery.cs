@@ -3,7 +3,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetMetrics;
 
-public class GetMetricsQuery : IRequest<List<ISensorEvent>>
+public record GetMetricsQuery : IRequest<List<ISensorEvent>>
 {
     public string? Room { get; set; }
 

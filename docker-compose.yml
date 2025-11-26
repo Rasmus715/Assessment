@@ -33,6 +33,7 @@ services:
       RABBITMQ_USER: guest
       RABBITMQ_PASS: guest
       WEAKAPP_BASE_URL: "http://weakapp:8080"
+    restart: always
     depends_on:
       - rabbitmq
       - weakapp
@@ -65,7 +66,7 @@ services:
       - ACCEPT_EULA=Y
       - SEQ_FIRSTRUN_ADMINUSERNAME=admin
       - SEQ_FIRSTRUN_ADMINPASSWORDHASH=QG+oFpLwetnVrzFQ+AuAwMFgFHKoksi0aONSZTfsf8GwoJ7bOCIoqKC7lse8jK+5ZCLx4iEL3TtMQuTN7EvprFckWTw0nMi9FLRRNSMksxAv
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./seq-data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -101,7 +102,7 @@ services:
       - rabbitmq
       - influxdb
       - seq
-    restart: unless-stopped
+    restart: always
     networks:
       - app-network
 
@@ -116,7 +117,7 @@ services:
       - influxdb
       - seq
       - weakapp
-    restart: unless-stopped
+    restart: always
     networks:
       - app-network
 
@@ -134,7 +135,7 @@ services:
       - "8082:8080"
     depends_on:
       - influxdb
-    restart: unless-stopped
+    restart: always
     networks:
       - app-network
 
@@ -145,7 +146,7 @@ services:
       - "3000:3000"
     depends_on:
       - gateway
-    restart: unless-stopped
+    restart: always
     networks:
       - app-network
     environment:

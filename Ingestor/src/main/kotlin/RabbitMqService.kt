@@ -31,6 +31,7 @@ object RabbitMqService {
                 Thread.sleep(delayMs)
             }
         }
+
         throw RuntimeException("Could not connect to RabbitMQ after $retries retries")
     }
 

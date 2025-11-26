@@ -3,7 +3,8 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetLatestMotionData;
 
-public class GetLatestMotionDataQuery : IRequest<List<GetLatestMotionDataResponseModel>>
+public record GetLatestMotionDataQuery
+    : IRequest<List<GetLatestMotionDataResponseModel>>
 {
     public DateTime? Timestamp { get; set; }
 

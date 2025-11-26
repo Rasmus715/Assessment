@@ -1,6 +1,6 @@
 ﻿namespace Assessment.Gateway.Features.GetLatestMetrics.Models;
 
-public class GetLatestMetricsResponseModel
+public record GetLatestMetricsResponseModel
 {
     public required string Room { get; set; }
 

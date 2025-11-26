@@ -1,6 +1,6 @@
 ﻿namespace Assessment.Gateway.Features.GetMetricsMetadata;
 
-public class GetMetricsMetadataRequest
+public record GetMetricsMetadataRequest
 {
     public string? Room { get; set; }
 

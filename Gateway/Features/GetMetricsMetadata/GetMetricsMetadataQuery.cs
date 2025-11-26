@@ -2,7 +2,7 @@
 
 namespace Assessment.Gateway.Features.GetMetricsMetadata;
 
-public class GetMetricsMetadataQuery : IQuery<GetMetricsMetadataResponse>
+public record GetMetricsMetadataQuery : IQuery<GetMetricsMetadataResponse>
 {
     public string? Room { get; set; }
 

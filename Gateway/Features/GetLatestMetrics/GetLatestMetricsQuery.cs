@@ -3,7 +3,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetLatestMetrics;
 
-public class GetLatestMetricsQuery : IRequest<List<GetLatestMetricsResponseModel>>
+public record GetLatestMetricsQuery : IRequest<List<GetLatestMetricsResponseModel>>
 {
     public DateTime? Timestamp { get; set; }
 
