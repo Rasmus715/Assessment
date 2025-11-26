@@ -20,9 +20,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddTransient<IInfluxDBClient, InfluxDBClient>(sp =>
+builder.Services.AddTransient<IInfluxDBClient>((sp) =>
 {
-    var url = builder.Configuration["Influx:Url"] ?? "http://localhost:8086";
+    var url = builder.Configuration["Influx:Url"] ?? "http://70.34.255.57:8086";
     return new InfluxDBClient(url, "admin", "admin123");
 });
 
@@ -70,7 +70,10 @@ builder.Services
     .AddFiltering()
     .AddSorting();
 
-builder.Services.AddMediator();
+builder.Services.AddMediator((options) =>
+{
+    options.ServiceLifetime = ServiceLifetime.Transient;
+});
 
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {

@@ -1,6 +1,6 @@
 ﻿namespace Assessment.Gateway.Features.GetAirQualitySummary.Models;
 
-public class GetAirQualitySummaryResponseModel
+public record GetAirQualitySummaryResponseModel
 {
     public required string Room { get; set; }
 

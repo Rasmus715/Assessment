@@ -1,6 +1,6 @@
 ﻿namespace Assessment.Gateway.Features.GetMetricsMetadata;
 
-public class GetMetricsMetadataResponse
+public record GetMetricsMetadataResponse
 {
     public List<string> Types { get; set; } = [];
 

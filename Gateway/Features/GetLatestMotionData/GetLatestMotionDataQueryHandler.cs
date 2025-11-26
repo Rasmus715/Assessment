@@ -4,7 +4,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetLatestMotionData;
 
-public class GetLatestMotionDataQueryHandler(IInfluxDbService influxDbService)
+public record GetLatestMotionDataQueryHandler(IInfluxDbService influxDbService)
     : IRequestHandler<GetLatestMotionDataQuery, List<GetLatestMotionDataResponseModel>>
 {
     public async ValueTask<List<GetLatestMotionDataResponseModel>> Handle(

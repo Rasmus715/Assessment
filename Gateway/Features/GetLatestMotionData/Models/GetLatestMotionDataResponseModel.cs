@@ -1,6 +1,6 @@
 ﻿namespace Assessment.Gateway.Features.GetMotionLatestData.Models;
 
-public class GetLatestMotionDataResponseModel
+public record GetLatestMotionDataResponseModel
 {
     public required string Room { get; set; }
 

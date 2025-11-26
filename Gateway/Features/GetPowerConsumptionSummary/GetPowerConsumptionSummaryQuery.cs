@@ -3,7 +3,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetPowerConsumptionSummary;
 
-public class GetPowerConsumptionSummaryQuery : IRequest<List<GetPowerConsumptionSummaryResponseModel>>
+public record GetPowerConsumptionSummaryQuery : IRequest<List<GetPowerConsumptionSummaryResponseModel>>
 {
     public DateTime? From { get; set; }
 

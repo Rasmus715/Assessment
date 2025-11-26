@@ -4,10 +4,9 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetPowerConsumptionSummary;
 
-public class GetPowerConsumptionSummaryQueryHandler(IInfluxDbService influxDBSerivce)
+public record GetPowerConsumptionSummaryQueryHandler(IInfluxDbService influxDBSerivce)
     : IRequestHandler<GetPowerConsumptionSummaryQuery, List<GetPowerConsumptionSummaryResponseModel>>
 {
-
     public async ValueTask<List<GetPowerConsumptionSummaryResponseModel>> Handle(
         GetPowerConsumptionSummaryQuery request,
         CancellationToken cancellationToken)

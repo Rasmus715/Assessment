@@ -3,7 +3,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetAirQualitySummary;
 
-public class GetAirQualitySummaryQuery : IRequest<List<GetAirQualitySummaryResponseModel>>
+public record GetAirQualitySummaryQuery : IRequest<List<GetAirQualitySummaryResponseModel>>
 {
     public DateTime? Timestamp { get; set; }
 

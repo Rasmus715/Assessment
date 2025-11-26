@@ -2,7 +2,7 @@
 
 namespace Assessment.Gateway.Features.GetSensorEvents.Models.GraphQL;
 
-public class AirQualityEvent : ISensorEvent
+public record AirQualityEvent : ISensorEvent
 {
     public string Type => "air_quality";
 

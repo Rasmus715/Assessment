@@ -144,7 +144,7 @@ export default function MetricsPage() {
     async function loadMetadata() {
       try {
         const restApiUrl =
-          process.env.NEXT_PUBLIC_REST_API_URL || "https://localhost:7052";
+          process.env.NEXT_PUBLIC_REST_API_URL || "http://localhost:5148";
         const res = await fetch(`${restApiUrl}/metrics/metadata`);
         if (!res.ok) {
           throw new Error("Failed to load metadata");
