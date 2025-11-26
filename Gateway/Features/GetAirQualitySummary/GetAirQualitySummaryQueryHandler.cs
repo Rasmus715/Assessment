@@ -4,7 +4,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetAirQualitySummary;
 
-public record GetAirQualitySummaryQueryHandler(IInfluxDbService influxDbService)
+public class GetAirQualitySummaryQueryHandler(IInfluxDbService influxDbService)
     : IRequestHandler<GetAirQualitySummaryQuery, List<GetAirQualitySummaryResponseModel>>
 {
     public async ValueTask<List<GetAirQualitySummaryResponseModel>> Handle(

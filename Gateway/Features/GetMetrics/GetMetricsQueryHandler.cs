@@ -4,7 +4,7 @@ using Mediator;
 
 namespace Assessment.Gateway.Features.GetMetrics;
 
-public record GetMetricsQueryHandler(IInfluxDbService influxDbService)
+public class GetMetricsQueryHandler(IInfluxDbService influxDbService)
     : IRequestHandler<GetMetricsQuery, List<ISensorEvent>>
 {
     public async ValueTask<List<ISensorEvent>> Handle(
