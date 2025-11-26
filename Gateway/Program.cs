@@ -20,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddTransient<IInfluxDBClient>((sp) =>
+builder.Services.AddTransient<IInfluxDBClient, InfluxDBClient>((sp) =>
 {
     var url = builder.Configuration["Influx:Url"] ?? "http://70.34.255.57:8086";
     return new InfluxDBClient(url, "admin", "admin123");
